@@ -1,5 +1,7 @@
 package request;
 
+import com.google.inject.Inject;
+
 import service.DrawShape;
 
 /**
@@ -11,6 +13,7 @@ public class SquareRequest implements Request {
 
     private DrawShape drawShape;
 
+    @Inject
     public SquareRequest(DrawShape drawShape) {
         this.drawShape = drawShape;
     }

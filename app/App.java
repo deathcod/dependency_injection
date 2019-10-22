@@ -1,14 +1,19 @@
 package app;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+
+import module.AppModule;
 import request.Request;
-import request.SquareRequest;
-import service.DrawShape;
-import service.DrawSquare;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        DrawShape drawShape = new DrawSquare();
-        Request request = new SquareRequest(drawShape);
+
+        // Create an guice injector
+        Injector appInjector = Guice.createInjector(new AppModule());
+
+        // get instance of request
+        Request request = appInjector.getInstance(Request.class);
 
         request.makeRequest();
     }
