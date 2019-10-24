@@ -2,6 +2,7 @@ package request;
 
 import com.google.inject.Inject;
 
+import annotations.Square;
 import service.DrawShape;
 
 /**
@@ -14,7 +15,7 @@ public class SquareRequest implements Request {
     private DrawShape drawShape;
 
     @Inject
-    public SquareRequest(DrawShape drawShape) {
+    public SquareRequest(@Square DrawShape drawShape) {
         this.drawShape = drawShape;
     }
 
