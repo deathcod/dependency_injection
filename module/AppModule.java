@@ -25,7 +25,18 @@ public class AppModule extends AbstractModule {
     protected void configure() {
         super.configure();
 
-        //bind(DrawShape.class).to(DrawSquare.class);
+        try {
+            /**
+             * Constructor binding,
+             * In this if a function has mutliple constructors, one custructor needs to be initialized
+             * For that, we require to provide constructor binding.
+             */
+            bind(DrawShape.class)
+                .annotatedWith(Square.class)
+                .toConstructor(DrawSquare.class.getConstructor(String.class));
+        } catch (NoSuchMethodException | SecurityException e) {
+            System.out.println("Error was here");
+        }
         bind(Request.class)
             .to(SquareRequest.class);
         bind(Shape.class)
@@ -33,9 +44,6 @@ public class AppModule extends AbstractModule {
             .toInstance(Shape.SQUARE);
         bind(Integer.class).annotatedWith(EdgeValue.class).toInstance(40);
         bind(String.class).annotatedWith(ColorValue.class).toInstance("Red");
-        bind(DrawShape.class)
-            .annotatedWith(Square.class)
-            .toProvider(ShapeProvider.class);
     }
 
     /**

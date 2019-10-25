@@ -22,6 +22,12 @@ public class DrawSquare implements DrawShape {
         this.edge = edge;
     }
 
+    @Inject
+    public DrawSquare(@ColorValue String color) {
+        this.color = color;
+        this.edge = 50;
+    }
+
     @Override
     public void draw() {
         System.out.println(String.format(SQUARE_VALUE, edge, color));
